@@ -1041,8 +1041,9 @@ int main(int argc, char *argv[])
   //pthread_create(&m_omx_reader_thread, NULL, reader_open_thread, (void*) m_filename.c_str());
  
 play_file:
-  Logger::log("[Main thread] call pthread_join");
+  //Logger::log("[Main thread] call pthread_join");
   m_filename = movies_manager.getNext().c_str();
+  Logger::log("Playing movie " + AnsiString(m_filename));
   if(m_player_init) {
     m_omx_reader.Close();
     //m_omx_reader = m_omx_reader_next;
@@ -1201,11 +1202,9 @@ play_file:
     m_player_init = true;
   }
 
-  Logger::log("[Main thread] generate next movie");
+  //Logger::log("[Main thread] generate next movie");
   //m_filename = movies_manager.getNext().c_str();
-  Logger::log("[Main thread] generate ok, open next movie in bg");
-  //pthread_create(&m_omx_reader_thread, NULL, reader_open_thread, (void*)m_filename.c_str());
-  Logger::log("[Main thread] Start playing act movie");
+
   m_av_clock->OMXReset(m_has_video, m_has_audio);
   m_av_clock->OMXStateExecute();
   sentStarted = true;
@@ -1852,7 +1851,6 @@ play_file:
   }
 
 do_exit:
-  Logger::log("[Main thread] do_exit");
   if (m_stats)
     printf("\n");
 

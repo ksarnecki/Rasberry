@@ -25,7 +25,7 @@ class Displayer(object):
         self._small_font = pygame.font.Font(None, 25)
         self._big_font   = pygame.font.Font(None, 250)
         self._running    = True
-        self._source = "/var/log/video.log"
+        self._source = "/var/log/rpi_logger.log"
 
     def _blank_screen(self):
         """Render a blank screen filled with the background color."""
@@ -73,18 +73,17 @@ class Displayer(object):
                 prev = next
                 print('display!')
                 self._render_log(self._tail(self._source, "50"))
-            time.sleep(10)
+            time.sleep(15)
+            break
     
 
-    def signal_quit(self, signal, frame):
-        """Shut down the program, meant to by called by signal handler."""
-        self._running = False
-        if self._player is not None:
-            self._player.stop()
+    def quit(self):
         pygame.quit()
 
 
 # Main entry point.
 if __name__ == '__main__':
     print('Starting daemon.')
-    Displayer().run()
+    d = Displayer()
+    d.run()
+    d.quit()

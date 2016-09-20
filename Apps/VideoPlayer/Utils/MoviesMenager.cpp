@@ -1,6 +1,13 @@
 #include "MoviesMenager.h"
 
+static bool cmp(const MediaInfoObj& obj1, const MediaInfoObj& obj2) {
+  bool t1 = obj1.getVideoInfoObj().getCodec() == obj2.getVideoInfoObj().getCodec();
+  bool t2 = obj1.getAudioInfoObj().getFormat() == obj2.getAudioInfoObj().getFormat();
+  return t1 && t2;
+}
+
 void MoviesMenager::loadMovies(AnsiString configFile, AnsiString moviesDir) {
+  try { 
   //load basic movies info
   FILE* inputFile;
   if((inputFile = fopen(configFile.c_str(), "rb")) == NULL) {
@@ -39,15 +46,19 @@ void MoviesMenager::loadMovies(AnsiString configFile, AnsiString moviesDir) {
 	  Logger::err("Empty movies list!");
   AnsiString info = movies[0].getMediaInfoObj().toJSON();
   for (int i = 1; i < movies.Size(); i++) {
-          Logger::log(movies[i].getMediaInfoObj().toJSON());
-	  if (movies[i].getMediaInfoObj().toJSON() != info) {
-		  Logger::err("Movie " + movies[i].getPath() + "bad format!\n" + movies[i].getMediaInfoObj().toJSON() + "\n not match\n" + info);
+          Logger::log("Load movie: " + movies[i].getMediaInfoObj().toJSON());
+	  if (!cmp(movies[i].getMediaInfoObj(), (movies[0].getMediaInfoObj()))) {
+		  Logger::err("Movie " + movies[i].getPath() + "bad format!\n" + movies[i].getMediaInfoObj().toJSON() + "\n not match\n" + movies[0].getMediaInfoObj().toJSON());
 	  }
   }
   srand(time(NULL));
-  printf("Done!\n");
   fclose(inputFile);
   free(line);
+  ShellUtil::exec("/usr/bin/python /home/player/cpp/RasberryPiUtils/Apps/Displayer/Displayer.py");
+  } catch(Exception e) {
+    ShellUtil::exec("/usr/bin/python /home/player/cpp/RasberryPiUtils/Apps/Displayer/Displayer.py");
+    throw e;
+  }
 }
 
 AnsiString MoviesMenager::getNext() {

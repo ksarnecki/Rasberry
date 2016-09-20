@@ -8,6 +8,7 @@
 #include "AnsiString.h"
 #include "DynSet.h"
 #include "Exception.h"
+#include "ShellUtil.h"
 
 #define LOG AnsiString("/var/log/rpi_logger.log")
 
