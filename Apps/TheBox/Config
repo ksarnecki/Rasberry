@@ -1,0 +1,17 @@
+#CONFIG FILE
+[eth]
+dhcp=disable
+gateway=disallow
+
+[lte]
+gateway=heigh
+
+#[wifi]
+#
+#
+
+[system]
+os=rasbian
+
+[device]
+name=rpi

@@ -1,0 +1,9 @@
+*.o
+omxplayer.log
+omxplayer.old.log
+omxplayer.bin
+ffmpeg_compiled
+ffmpeg
+help.h
+keys.h
+patch.flag

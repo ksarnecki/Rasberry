@@ -1,0 +1,78 @@
+AppData
+cpp
+
+string
+basic
+
+int
+basic
+
+Bool
+variant
+true
+false
+*
+
+DhcpStatus
+variant
+empty
+dhcpDetected : string
+noDhcpDetected
+dhcpRun
+*
+
+GatewayPirority
+variant
+disallow
+low
+heigh
+*
+
+IfaceStatus
+record
+plugIn : Bool
+ipv4 : string
+dhcpStatus : DhcpStatus
+pingOk : Bool
+gatewayPirority : GatewayPirority
+*
+
+WifiNetwork
+record
+ssid : string
+connected : Bool
+*
+
+WifiList
+array
+WifiNetwork
+
+NetStatus
+record
+eth : IfaceStatus
+wlan : IfaceStatus
+lte : IfaceStatus
+wifiList : WifiList
+*
+
+System
+variant
+ubuntu
+rasbian
+*
+
+Device
+variant
+rPI
+bPI
+*
+
+Data
+record
+netStatus : NetStatus
+system : System
+device : Device
+*
+
+
+

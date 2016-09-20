@@ -1,0 +1,21 @@
+#CONFIG FILE
+[eth]
+#dhcp
+#Avaible options:
+#enable - run dhcp server if not routing via eth
+#disable -!enable
+dhcp=enable
+gateway=heigh
+
+[lte]
+gateway=low
+
+#[wifi]
+#
+#
+
+[system]
+os=rasbian
+
+[device]
+name=rpi

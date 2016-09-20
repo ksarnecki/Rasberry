@@ -1,0 +1,18 @@
+AppData
+cpp
+
+string
+basic
+
+int
+basic
+
+MediaInfoObj
+external
+MediaInfoObj.h
+
+Movie = record {
+  path : string,
+  weight : int,
+  mediaInfoObj : MediaInfoObj
+}

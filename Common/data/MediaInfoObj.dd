@@ -1,0 +1,24 @@
+MediaInfoObj
+cpp
+
+string
+basic
+
+VideoInfoObj = record {
+  codec : string,
+  width : string,
+  height : string,
+  profile : string,
+  fps : string
+}
+
+AudioInfoObj = record {
+  format : string,
+  samplerate : string,
+  bitspersample : string 
+}
+
+MediaInfoObj = record {
+  videoInfoObj : VideoInfoObj,
+  audioInfoObj : AudioInfoObj
+}

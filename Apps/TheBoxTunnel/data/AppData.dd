@@ -1,0 +1,57 @@
+AppData
+cpp
+
+int
+basic
+
+string
+basic
+
+
+Data
+record
+id : int
+source : string
+*
+
+NewClientInfo
+record
+id : int
+connport : int
+*
+
+Cmd
+variant
+ping
+newClient : NewClientInfo 
+clientLost : int
+clientAccept : int
+data : Data
+*
+
+FdsArray
+array
+int
+
+Client
+record
+outbuf : string
+id : int
+fd : int
+*
+
+ConnClientsArray
+array
+Client
+
+ConnData
+record
+tcpclients : ConnClientsArray
+listenfds : FdsArray
+fd : int
+sfd : int
+inbuf : string
+outbuf : string
+lastread : int
+lastwrite : int
+*
