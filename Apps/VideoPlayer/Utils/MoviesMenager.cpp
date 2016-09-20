@@ -39,6 +39,7 @@ void MoviesMenager::loadMovies(AnsiString configFile, AnsiString moviesDir) {
 	  Logger::err("Empty movies list!");
   AnsiString info = movies[0].getMediaInfoObj().toJSON();
   for (int i = 1; i < movies.Size(); i++) {
+          Logger::log(movies[i].getMediaInfoObj().toJSON());
 	  if (movies[i].getMediaInfoObj().toJSON() != info) {
 		  Logger::err("Movie " + movies[i].getPath() + "bad format!\n" + movies[i].getMediaInfoObj().toJSON() + "\n not match\n" + info);
 	  }

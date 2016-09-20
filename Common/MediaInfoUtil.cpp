@@ -42,7 +42,7 @@
            samplerate = value;
          } else if (key == "Height") {
            height = value;
-         } else if (key.Pos("Bit rate") > 0) {
+         } else if (key == "Bit rate" > 0) {
            bitspersample += value + ";";
          }
        }
