@@ -1,0 +1,4 @@
+*.o
+*.tgz
+*.tar.gz
+Apps/VideoPlayer/omxplayer/omxplayer-dist/
