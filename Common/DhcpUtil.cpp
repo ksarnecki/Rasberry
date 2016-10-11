@@ -39,7 +39,8 @@ void DhcpUtil::stopServer() {
 bool DhcpUtil::dhcpSeverDetected() {
   if(!ShellUtil::CmdExist("dhcpcd"))
     throw Exception("dhcpcd not found!");
-  return ShellUtil::exec("sudo dhcpcd -T " + IfconfigUtil::getEthName() + " -t 3 | grep new_ip").Size() > 0;
+  // return ShellUtil::exec("sudo dhcpcd -T " + IfconfigUtil::getEthName() + " -t 3 | grep new_ip").Size() > 0; on Rasberry PI & Rasbian
+  return ShellUtil::exec("sudo dhcpcd -T " + IfconfigUtil::getEthName() + " -t 3 | grep IPADDR").Size() > 0;
 }
 
 AnsiString DhcpUtil::getDhcpServerAddress() {

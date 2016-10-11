@@ -8,7 +8,7 @@ static void updateEth(IfaceStatus& eth) {
   eth.getPlugIn() = EthtoolUtil::isPlugIn(IfconfigUtil::getEthName()) ? Bool::createTrue() : Bool::createFalse();
   if(!eth.getPlugIn().isTrue()) {
     eth.getIpv4() = "";
-    eth.getDhcpStatus() = DhcpStatus::createEmpty();
+    eth.getDhcpStatus() = DhcpStatus::createEmpty();    
     return;
   }
   eth.getIpv4() = IfconfigUtil::getEthIp();
@@ -50,6 +50,7 @@ void balance(Data& data) {
   updateLte(lte);
   
   bool EthAv = eth.getPlugIn().isTrue() && eth.getDhcpStatus().isDhcpDetected() && !eth.getGatewayPirority().isDisallow();
+  Logger::log("[Common] EthPlug = " + AnsiString(eth.getPlugIn().isTrue()) + " && EthDhcpDetected " + AnsiString(eth.getDhcpStatus().isDhcpDetected()) + " && !disallow " + AnsiString(eth.getGatewayPirority().isDisallow()));
   Logger::log("[Common] EthAv = " + AnsiString(EthAv));
   bool LteAv = lte.getPlugIn().isTrue() && !lte.getGatewayPirority().isDisallow();
   Logger::log("[Common] LteAv = ("+AnsiString(lte.getPlugIn().isTrue())+" && !"+AnsiString(lte.getGatewayPirority().isDisallow())+") =" + AnsiString(LteAv));

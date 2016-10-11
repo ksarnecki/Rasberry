@@ -79,7 +79,7 @@ static void setNsswitchConfig() {
       update = true;
   }
   if(update) {
-    Logger::log("[setNsswitchConfig] update&reboot");
+    Logger::log("[setNsswitchConfig] update /etc/nsswitch.conf & reboot");
     ShellUtil::exec("sudo echo '' > " + path);
     for(int i=0;i<config.Size();i++) {
       ShellUtil::exec("sudo echo '" + config[i] + "' >> " + path);
